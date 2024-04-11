@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using Net.Server;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace WYDDJZS
 {
@@ -27,10 +28,12 @@ namespace WYDDJZS
             getLocalIp();
 
             serverDir = ConfigUtil.GetString("serverDir");
-            clientDir = ConfigUtil.GetString("clientDir");
             clientExe = ConfigUtil.GetString("clientExe");
+            if (clientExe != null)
+            {
+                clientDir = Path.GetDirectoryName(clientExe);
+            }
             setLableDir(lbServerDir, serverDir);
-            setLableDir(lbClientDir, clientDir);
             setLableDir(lbClientExe, clientExe);
         }
 
@@ -67,21 +70,6 @@ namespace WYDDJZS
             }
         }
 
-
-        private void lbClientDir_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                string outDir = folderBrowserDialog.SelectedPath;
-                if (setLableDir(lbClientDir, outDir))
-                {
-                    clientDir = outDir;
-                    ConfigUtil.SetString("clientDir", outDir);
-                }
-            }
-        }
-
         private void lbClientExe_Click(object sender, EventArgs e)
         {
             string path = string.Empty;
@@ -98,6 +86,11 @@ namespace WYDDJZS
                 {
                     clientExe = path;
                     ConfigUtil.SetString("clientExe", path);
+
+                    if (clientExe != null)
+                    {
+                        clientDir = Path.GetDirectoryName(clientExe);
+                    }
                 }
             }
 
@@ -215,7 +208,7 @@ namespace WYDDJZS
             {
                 try
                 {
-                    File.Move(path, backFile);
+                    File.Move(path, backFile, true);
 
                     insertMessage("备份" + path + "为" + backFile);
                 }
@@ -266,7 +259,7 @@ namespace WYDDJZS
             {
                 try
                 {
-                    File.Move(localip, localipBck);
+                    File.Move(localip, localipBck, true);
                     insertMessage("备份" + hostIp + "为" + localipBck);
 
                     File.WriteAllText(localip, hostIp);
@@ -283,7 +276,7 @@ namespace WYDDJZS
             {
                 try
                 {
-                    File.Move(redirect, redirectBck);
+                    File.Move(redirect, redirectBck, true);
                     insertMessage("备份" + redirect + "为" + redirectBck);
 
                     File.WriteAllText(redirect, hostIp + " 8895 aaaa5 1111");
@@ -308,7 +301,7 @@ namespace WYDDJZS
             {
                 try
                 {
-                    File.Move(localip, localipBck);
+                    File.Move(localip, localipBck, true);
                     insertMessage("备份" + hostIp + "为" + localipBck);
 
                     File.WriteAllText(localip, hostIp);
@@ -328,7 +321,7 @@ namespace WYDDJZS
             {
                 try
                 {
-                    File.Move(biserver, biserverBck);
+                    File.Move(biserver, biserverBck, true);
                     insertMessage("备份" + biserver + "为" + biserverBck);
 
                     File.WriteAllText(biserver, hostIp);
@@ -347,7 +340,7 @@ namespace WYDDJZS
             {
                 try
                 {
-                    File.Move(locakip, locakipBck);
+                    File.Move(locakip, locakipBck, true);
                     insertMessage("备份" + locakip + "为" + locakipBck);
 
                     File.WriteAllText(locakip, hostIp);
@@ -365,7 +358,7 @@ namespace WYDDJZS
             {
                 try
                 {
-                    File.Move(serverlist, serverlistBck);
+                    File.Move(serverlist, serverlistBck, true);
                     insertMessage("备份" + serverlist + "为" + serverlistBck);
 
                     StringBuilder sb = new StringBuilder();
@@ -393,9 +386,10 @@ namespace WYDDJZS
             string backFile = Path.Combine(clientDir, "serverlist_zsbk.bin");
             if (File.Exists(path))
             {
+                Path.GetFullPath(path);
                 try
                 {
-                    File.Move(path, backFile);
+                    File.Move(path, backFile, true );
 
                     insertMessage("备份" + path + "为" + backFile);
                 }
@@ -481,6 +475,7 @@ namespace WYDDJZS
             }
 
             lstbxMessage.Items.Add(message);
+            lstbxMessage.TopIndex = lstbxMessage.Items.Count - 1;
 
             if (lstbxMessage.Items.Count > 1000)
             {

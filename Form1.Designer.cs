@@ -30,11 +30,9 @@
         {
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
             label4 = new Label();
             lbLocalIp = new Label();
             lbServerDir = new Label();
-            lbClientDir = new Label();
             lbClientExe = new Label();
             lstbxMessage = new ListBox();
             btnModifyIp = new Button();
@@ -61,20 +59,11 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 117);
+            label2.Location = new Point(12, 74);
             label2.Name = "label2";
             label2.Size = new Size(78, 17);
             label2.TabIndex = 1;
             label2.Text = "客户端EXE：";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 77);
-            label3.Name = "label3";
-            label3.Size = new Size(80, 17);
-            label3.TabIndex = 2;
-            label3.Text = "客户端目录：";
             // 
             // label4
             // 
@@ -106,22 +95,11 @@
             lbServerDir.Text = "点击选择";
             lbServerDir.Click += lbServerDir_Click;
             // 
-            // lbClientDir
-            // 
-            lbClientDir.BackColor = SystemColors.ActiveBorder;
-            lbClientDir.Font = new Font("Microsoft YaHei UI", 10F);
-            lbClientDir.Location = new Point(93, 73);
-            lbClientDir.Name = "lbClientDir";
-            lbClientDir.Size = new Size(409, 24);
-            lbClientDir.TabIndex = 6;
-            lbClientDir.Text = "点击选择目录";
-            lbClientDir.Click += lbClientDir_Click;
-            // 
             // lbClientExe
             // 
             lbClientExe.BackColor = SystemColors.ActiveBorder;
             lbClientExe.Font = new Font("Microsoft YaHei UI", 8F);
-            lbClientExe.Location = new Point(93, 113);
+            lbClientExe.Location = new Point(93, 70);
             lbClientExe.Name = "lbClientExe";
             lbClientExe.Size = new Size(409, 24);
             lbClientExe.TabIndex = 7;
@@ -173,7 +151,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(btnModifyIp);
-            groupBox1.Location = new Point(12, 155);
+            groupBox1.Location = new Point(12, 107);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(490, 131);
             groupBox1.TabIndex = 12;
@@ -186,9 +164,9 @@
             groupBox2.Controls.Add(btnStartWeb);
             groupBox2.Controls.Add(btnLaunchServer);
             groupBox2.Controls.Add(btnLaunchClient);
-            groupBox2.Location = new Point(12, 308);
+            groupBox2.Location = new Point(12, 244);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(490, 105);
+            groupBox2.Size = new Size(490, 169);
             groupBox2.TabIndex = 13;
             groupBox2.TabStop = false;
             groupBox2.Text = "Launch";
@@ -233,11 +211,9 @@
             Controls.Add(groupBox1);
             Controls.Add(lstbxMessage);
             Controls.Add(lbClientExe);
-            Controls.Add(lbClientDir);
             Controls.Add(lbServerDir);
             Controls.Add(lbLocalIp);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -254,11 +230,9 @@
 
         private Label label1;
         private Label label2;
-        private Label label3;
         private Label label4;
         private Label lbLocalIp;
         private Label lbServerDir;
-        private Label lbClientDir;
         private Label lbClientExe;
         private ListBox lstbxMessage;
         private Button btnModifyIp;
