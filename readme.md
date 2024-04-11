@@ -4,4 +4,4 @@
 2. 修改客户serverlist.bin的ip地址
 3. 集成了简单的http服务
 
-![图片](/Users/pan/Downloads/1.jpg)
+![图片](https://github.com/philypan/WYDDJZS/blob/main/screenShot/1.jpg?raw=true)
